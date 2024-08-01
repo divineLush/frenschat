@@ -1,17 +1,28 @@
 <template>
-  <form class="login-form">
-    <label for="login-email">Email</label>
-    <input id="login-email" type="email" required></input>
+  <form class="register-form" @submit.prevent="onSubmit">
+    <label for="register-email">Email</label>
+    <input v-model="email" id="register-email" type="email" required></input>
 
-    <label for="login-password">Password</label>
-    <input id="login-password" type="password" required></input>
+    <label for="register-password">Password</label>
+    <input v-model="password" id="register-password" type="password" required></input>
 
     <button type="submit">SIGN IN</button>
   </form>
 </template>
 
+<script setup>
+import { ref } from 'vue'
+
+const email = ref('')
+const password = ref('')
+
+const onSubmit = () => {
+  console.log(this.email, this.password)
+}
+</script>
+
 <style>
-.login-form {
+.register-form {
   margin: 0 auto;
   max-width: 400px;
   display: flex;
