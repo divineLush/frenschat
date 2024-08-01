@@ -64,9 +64,30 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.1rem;
+  font-size: 16px;
 }
 
 .ml-1 {
-  margin-left: 1rem;
+  margin-left: 8px;
+}
+
+input {
+  padding: 4px;
+  border: 2px solid var(--overlay2);
+  border-radius: 4px;
+  background: var(--crust);
+  outline: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button[type="submit"] {
+  margin-top: 16px;
+  font-weight: bold;
+  color: var(--base);
+  padding: 16px;
+  border: 0;
+  border-radius: 32px;
+  font-size: inherit;
+  background: radial-gradient(var(--pink), transparent);
 }
