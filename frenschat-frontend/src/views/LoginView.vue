@@ -1,10 +1,10 @@
 <template>
   <form class="login-form">
-    <label>Email</label>
-    <input placeholder="foo@bar.com"></input>
+    <label for="login-email">Email</label>
+    <input id="login-email" type="email" required></input>
 
-    <label>Password</label>
-    <input placeholder="123qwe!" type="password"></input>
+    <label for="login-password">Password</label>
+    <input id="login-password" type="password" required></input>
 
     <button type="submit">SIGN IN</button>
   </form>
