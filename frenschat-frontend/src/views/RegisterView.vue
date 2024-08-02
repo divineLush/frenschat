@@ -18,7 +18,7 @@
       required
     ></input>
 
-    <button type="submit">SIGN UP</button>
+    <button type="submit" class="sign-up-btn">SIGN UP</button>
   </form>
 </template>
 
@@ -41,5 +41,9 @@ const onSubmit = () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.sign-up-btn {
+  background: radial-gradient(var(--pink), transparent);
 }
 </style>
