@@ -1,3 +1,5 @@
+import { createUser } from '../lib/db/collections/users.js'
+
 export const userRoutes = (fastify, _, done) => {
   // fastify.addHook('onRequest', (request) => {
   //   console.log(request)
@@ -7,8 +9,12 @@ export const userRoutes = (fastify, _, done) => {
     return { user: 'hell' }
   })
 
-  fastify.post('/register', async (requst, reply) => {
-    return { user: 'hell ooo' }
+  fastify.post('/register', async (request, reply) => {
+    reply.header("Access-Control-Allow-Origin", "*")
+    reply.header("Access-Control-Allow-Methods", "POST")
+    await createUser('email', 'pass')
+
+    return 'success'
   })
 
   done()

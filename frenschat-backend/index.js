@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import { userRoutes } from './router/user.js'
+import db from './lib/db/db.js'
 
 const fastify = Fastify({
   logger: true
@@ -7,13 +8,9 @@ const fastify = Fastify({
 
 fastify.register(userRoutes, { prefix: 'api/user' })
 
-fastify.get('/', async (request, reply) => {
-  // reply.send({ hello: 'world' })
-  return { hello: 'world' }
-})
-
 try {
   await fastify.listen({ port: 3000 })
+  await db()
 } catch (err) {
   fastify.log.error(err)
   process.exit(1)

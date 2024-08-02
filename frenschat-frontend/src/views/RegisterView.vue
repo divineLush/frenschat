@@ -1,10 +1,22 @@
 <template>
-  <form class="register-form" @submit.prevent="onSubmit">
+  <form class="register-form" autocomplete="on" @submit.prevent.stop="onSubmit">
     <label for="register-email">Email</label>
-    <input v-model="email" id="register-email" type="email" required></input>
+    <input
+      v-model.trim="email"
+      id="register-email"
+      name="register-email"
+      type="email"
+      required
+    ></input>
 
     <label for="register-password">Password</label>
-    <input v-model="password" id="register-password" type="password" required></input>
+    <input
+      v-model.trim="password"
+      id="register-password"
+      name="register-password"
+      type="password"
+      required
+    ></input>
 
     <button type="submit">SIGN UP</button>
   </form>
@@ -12,12 +24,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import { signUp } from '../utils/api'
 
 const email = ref('')
 const password = ref('')
 
 const onSubmit = () => {
-  console.log(this.email, this.password)
+  signUp(email.value, password.value)
 }
 </script>
 
