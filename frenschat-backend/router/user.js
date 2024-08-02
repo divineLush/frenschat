@@ -12,7 +12,9 @@ export const userRoutes = (fastify, _, done) => {
   fastify.post('/register', async (request, reply) => {
     reply.header("Access-Control-Allow-Origin", "*")
     reply.header("Access-Control-Allow-Methods", "POST")
-    await createUser('email', 'pass')
+
+    const { email, password } = JSON.parse(request.body)
+    await createUser(email, password)
 
     return 'success'
   })
