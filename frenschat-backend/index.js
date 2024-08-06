@@ -1,4 +1,5 @@
 import Fastify from 'fastify'
+import 'dotenv/config'
 import { userRoutes } from './router/user.js'
 import db from './lib/db/db.js'
 
@@ -9,7 +10,7 @@ const fastify = Fastify({
 fastify.register(userRoutes, { prefix: 'api/user' })
 
 try {
-  await fastify.listen({ port: 3000 })
+  await fastify.listen({ port: process.env.PORT })
   await db()
 } catch (err) {
   fastify.log.error(err)
