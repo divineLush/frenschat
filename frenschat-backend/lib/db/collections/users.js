@@ -6,10 +6,9 @@ export const createUser = async (email, password) => {
 
   await user.save()
 }
-//
-// export const findUser = async (email, password) => {
-//   const UserModel = (await db()).model(USERS_COLLECTION_KEY, UserSchema)
-//   const user = new UserModel({ email, password })
-//
-//   await user.save()
-// }
+
+export const findUser = async (email, password) => {
+  const UserModel = await createUserModel()
+
+  return await UserModel.exists({ email, password })
+}
