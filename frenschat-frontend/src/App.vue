@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header class="app-header">
-    <span class="app-logo">FRENSCHAT</span>
+    <router-link to="/" class="app-logo">FRENSCHAT</router-link>
     <nav>
       <router-link to="/login">login</router-link>
       <router-link class="ml-1" to="/register">register</router-link>
