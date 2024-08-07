@@ -20,17 +20,29 @@
 
     <button type="submit" class="sign-in-btn">SIGN IN</button>
   </form>
+
+  <p v-if="error" class="error">{{ error }}</p>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { signIn } from '../utils/api'
+import { useUserStore } from '../stores/user'
 
 const email = ref('')
 const password = ref('')
+const error = ref('')
 
-const onSubmit = () => {
-  signIn(email.value, password.value)
+const userStore = useUserStore()
+
+const onSubmit = async () => {
+  try {
+    const res = await signIn(email.value, password.value)
+    console.log(res)
+  } catch(err) {
+    console.log('error', err.message)
+    error.value = err.message
+  }
 }
 </script>
 
@@ -45,5 +57,10 @@ const onSubmit = () => {
 
 .sign-in-btn {
   background: radial-gradient(var(--green), transparent);
+}
+
+.error {
+  text-align: center;
+  color: var(--red);
 }
 </style>
