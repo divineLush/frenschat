@@ -29,11 +29,18 @@ export const userRoutes = (fastify, _, done) => {
     reply.header("Access-Control-Allow-Methods", "POST")
 
     const { username, email, password } = JSON.parse(request.body)
-    await createUser(username, email, password)
 
-    reply
-      .code(200)
-      .send({})
+    try {
+      await createUser(username, email, password)
+
+      reply
+        .code(200)
+        .send({})
+    } catch(err) {
+      reply
+        .code(400)
+        .send({ message: err.message })
+    }
   })
 
   done()
