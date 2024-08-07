@@ -6,6 +6,7 @@ export const signIn = async (email, password) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({ email, password }),
     })
 
