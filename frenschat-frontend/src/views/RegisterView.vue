@@ -1,5 +1,14 @@
 <template>
   <form class="register-form" autocomplete="on" @submit.prevent.stop="onSubmit">
+    <label for="register-email">Username</label>
+    <input
+      v-model.trim="username"
+      id="register-username"
+      name="register-username"
+      type="text"
+      required
+    ></input>
+
     <label for="register-email">Email</label>
     <input
       v-model.trim="email"
@@ -26,11 +35,12 @@
 import { ref } from 'vue'
 import { signUp } from '../utils/api'
 
+const username = ref('')
 const email = ref('')
 const password = ref('')
 
 const onSubmit = () => {
-  signUp(email.value, password.value)
+  signUp(username.value, email.value, password.value)
 }
 </script>
 

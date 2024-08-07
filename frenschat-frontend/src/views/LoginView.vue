@@ -1,11 +1,11 @@
 <template>
   <form class="login-form" autocomplete="on" @submit.prevent.stop="onSubmit">
-    <label for="login-email">Email</label>
+    <label for="login-email-username">Email or username</label>
     <input
-      v-model.trim="email"
-      id="login-email"
-      name="login-email"
-      type="email"
+      v-model.trim="login"
+      id="login-email-username"
+      name="login-email-username"
+      type="text"
       required
     ></input>
 
@@ -29,7 +29,7 @@ import { ref } from 'vue'
 import { signIn } from '../utils/api'
 import { useUserStore } from '../stores/user'
 
-const email = ref('')
+const login = ref('')
 const password = ref('')
 const error = ref('')
 
@@ -37,7 +37,7 @@ const userStore = useUserStore()
 
 const onSubmit = async () => {
   try {
-    const res = await signIn(email.value, password.value)
+    const res = await signIn(login.value, password.value)
     console.log(res)
   } catch(err) {
     console.log('error', err.message)

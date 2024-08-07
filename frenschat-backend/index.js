@@ -12,7 +12,7 @@ const fastify = Fastify({
 fastify.register(fastifyJwt, {
   secret: process.env.JWT_SECRET,
   cookie: {
-    cookieName: 'token',
+    cookieName: process.env.COOKIE_NAME,
     signed: false,
   },
 })

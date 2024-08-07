@@ -6,14 +6,14 @@ export const userRoutes = (fastify, _, done) => {
     reply.header("Access-Control-Allow-Origin", "*")
     reply.header("Access-Control-Allow-Methods", "POST")
 
-    const { email, password } = JSON.parse(request.body)
-    const isValid = await checkPassword(email, password)
-    const code = isValid ? 200 : 404
+    const { login, password } = JSON.parse(request.body)
+    const isValid = await checkPassword(login, password)
+    const code = isValid ? 200 : 400
 
-    const token = fastify.jwt.sign({ email })
+    const token = fastify.jwt.sign({ login })
 
     reply
-      .cookie('token', token, {
+      .cookie(process.env.COOKIE_NAME, token, {
         // domain: 'localhost',
         // path: '/',
         // secure: true,
@@ -21,19 +21,19 @@ export const userRoutes = (fastify, _, done) => {
         // sameSite: true
       })
       .code(code)
-      .send({ email })
+      .send({})
   })
 
   fastify.post('/register', async (request, reply) => {
     reply.header("Access-Control-Allow-Origin", "*")
     reply.header("Access-Control-Allow-Methods", "POST")
 
-    const { email, password } = JSON.parse(request.body)
-    await createUser(email, password)
+    const { username, email, password } = JSON.parse(request.body)
+    await createUser(username, email, password)
 
     reply
       .code(200)
-      .send({ email })
+      .send({})
   })
 
   done()
