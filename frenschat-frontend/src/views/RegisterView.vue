@@ -29,18 +29,29 @@
 
     <button type="submit" class="sign-up-btn">SIGN UP</button>
   </form>
+
+  <p v-if="error" class="error">{{ error }}</p>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { signUp } from '../utils/api'
+import { useRouter } from 'vue-router'
 
 const username = ref('')
 const email = ref('')
 const password = ref('')
+const error = ref('')
 
-const onSubmit = () => {
-  signUp(username.value, email.value, password.value)
+const router = useRouter()
+
+const onSubmit = async () => {
+  try {
+    await signUp(username.value, email.value, password.value)
+    router.push('/')
+  } catch(err) {
+    error.value = err.message
+  }
 }
 </script>
 

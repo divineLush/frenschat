@@ -90,3 +90,8 @@ button[type="submit"] {
   border-radius: 32px;
   font-size: inherit;
 }
+
+.error {
+  text-align: center;
+  color: var(--red);
+}

@@ -28,19 +28,20 @@
 import { ref } from 'vue'
 import { signIn } from '../utils/api'
 import { useUserStore } from '../stores/user'
+import { useRouter } from 'vue-router'
 
 const login = ref('')
 const password = ref('')
 const error = ref('')
 
 const userStore = useUserStore()
+const router = useRouter()
 
 const onSubmit = async () => {
   try {
-    const res = await signIn(login.value, password.value)
-    console.log(res)
+    await signIn(login.value, password.value)
+    router.push('/')
   } catch(err) {
-    console.log('error', err.message)
     error.value = err.message
   }
 }
@@ -57,10 +58,5 @@ const onSubmit = async () => {
 
 .sign-in-btn {
   background: radial-gradient(var(--green), transparent);
-}
-
-.error {
-  text-align: center;
-  color: var(--red);
 }
 </style>
