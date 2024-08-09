@@ -1,7 +1,7 @@
 import checkPassword from '../lib/auth/check-password.js'
 import { createUser } from '../lib/db/collections/users.js'
 
-export const userRoutes = (fastify, _, done) => {
+export default (fastify, _, done) => {
   fastify.post('/login', async (request, reply) => {
     reply.header("Access-Control-Allow-Origin", "*")
     reply.header("Access-Control-Allow-Methods", "POST")
