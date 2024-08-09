@@ -9,11 +9,12 @@
   </div>
   <button @click="send">></button>
 
-  <p v-if="error" class="error">{{ error }}</p>
+  <Error :msg="error" />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import Error from '../components/Error.vue'
 import Socket from '../utils/socket.js'
 
 const messages = ref([])

@@ -30,13 +30,16 @@
     <button type="submit" class="sign-up-btn">SIGN UP</button>
   </form>
 
-  <p v-if="error" class="error">{{ error }}</p>
+  <Error :msg="error" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { signUp } from '../utils/api'
 import { useRouter } from 'vue-router'
+
+import { signUp } from '../utils/api'
+
+import Error from '../components/Error.vue'
 
 const username = ref('')
 const email = ref('')

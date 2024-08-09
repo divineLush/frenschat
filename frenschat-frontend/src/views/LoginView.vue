@@ -21,14 +21,17 @@
     <button type="submit" class="sign-in-btn">SIGN IN</button>
   </form>
 
-  <p v-if="error" class="error">{{ error }}</p>
+  <Error :msg="error" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 import { signIn } from '../utils/api'
 import { useUserStore } from '../stores/user'
-import { useRouter } from 'vue-router'
+
+import Error from '../components/Error.vue'
 
 const login = ref('')
 const password = ref('')
