@@ -8,6 +8,8 @@
     </p>
   </div>
   <button @click="send">></button>
+
+  <p v-if="error" class="error">{{ error }}</p>
 </template>
 
 <script setup>
@@ -15,12 +17,17 @@ import { ref, onMounted } from 'vue'
 import Socket from '../utils/socket.js'
 
 const messages = ref([])
+const error = ref('')
 const socket = ref(new Socket(e => {
   messages.value.push(e.data)
 }))
 
 const send = () => {
-  socket.value.send(123)
+  try {
+    socket.value.send(123)
+  } catch(e) {
+    error.value = e.message
+  }
 }
 </script>
 

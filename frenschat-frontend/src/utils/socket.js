@@ -8,6 +8,10 @@ export default class Socket {
   }
 
   send(msg) {
+    if (this._socket.readyState !== WebSocket.OPEN) {
+      throw new Error('Messed up connection')
+    }
+
     this._socket.send(JSON.stringify(msg))
   }
 }
