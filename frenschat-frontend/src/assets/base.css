@@ -71,6 +71,10 @@ body {
   margin-left: 8px;
 }
 
+.mt-2 {
+  margin-top: 16px;
+}
+
 .mt-4 {
   margin-top: 32px;
 }
@@ -90,7 +94,6 @@ input {
 }
 
 button[type="submit"] {
-  margin-top: 16px;
   font-weight: bold;
   color: var(--base);
   padding: 16px;

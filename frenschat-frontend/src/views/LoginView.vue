@@ -18,7 +18,7 @@
       required
     ></input>
 
-    <button type="submit" class="sign-in-btn">SIGN IN</button>
+    <button type="submit" class="sign-in-btn mt-2">SIGN IN</button>
   </form>
 
   <Error :msg="error" />
