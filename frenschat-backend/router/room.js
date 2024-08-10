@@ -1,12 +1,6 @@
 export default (fastify, _, done) => {
 
-  fastify.addHook('preValidation', async (request, reply) => {
-    try {
-      await request.jwtVerify()
-    } catch (err) {
-      reply.code(401).send('not authenticated');
-    }
-  })
+  fastify.addHook('onRequest', request => request.jwtVerify())
 
   fastify.get('/', { websocket: true }, async (socket, request) => {
 

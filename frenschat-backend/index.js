@@ -24,14 +24,12 @@ fastify.register(fastifyJwt, {
 
 await fastify.register(websocket)
 
-fastify.register(fastifyCookie, {
-  secret: process.env.JWT_SECRET,
-  hook: 'onRequest',
-})
+fastify.register(fastifyCookie)
 
 fastify.addHook('onRequest', (request, reply, done) => {
-  reply.header('Access-Control-Allow-Origin', '*')
-  reply.header('Access-Control-Allow-Methods', 'GET, POST')
+  reply.header('access-control-allow-origin', '*')
+  reply.header('access-control-allow-methods', '*')
+  reply.header('access-control-allow-credentials', true)
 
   done()
 })

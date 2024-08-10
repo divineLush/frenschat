@@ -11,11 +11,11 @@ export default (fastify, _, done) => {
 
     reply
       .cookie(process.env.COOKIE_NAME, token, {
-        // domain: 'localhost',
-        // path: '/',
-        // secure: true,
+        domain: 'localhost',
+        path: '/',
+        secure: true,
         httpOnly: true,
-        // sameSite: true
+        sameSite: true
       })
       .code(code)
       .send({ login })
