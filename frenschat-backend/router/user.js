@@ -3,9 +3,6 @@ import { createUser } from '../lib/db/collections/users.js'
 
 export default (fastify, _, done) => {
   fastify.post('/login', async (request, reply) => {
-    reply.header("Access-Control-Allow-Origin", "*")
-    reply.header("Access-Control-Allow-Methods", "POST")
-
     const { login, password } = JSON.parse(request.body)
     const isValid = await checkPassword(login, password)
     const code = isValid ? 200 : 400
@@ -25,9 +22,6 @@ export default (fastify, _, done) => {
   })
 
   fastify.post('/register', async (request, reply) => {
-    reply.header("Access-Control-Allow-Origin", "*")
-    reply.header("Access-Control-Allow-Methods", "POST")
-
     const { username, email, password } = JSON.parse(request.body)
 
     try {

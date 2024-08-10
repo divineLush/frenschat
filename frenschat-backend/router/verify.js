@@ -9,9 +9,6 @@ export default (fastify, _, done) => {
   })
 
   fastify.get('/', async (request, reply) => {
-    reply.header("Access-Control-Allow-Origin", "*")
-    reply.header("Access-Control-Allow-Methods", "POST")
-
     reply.code(200).send(request.user)
   })
 
