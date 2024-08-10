@@ -5,22 +5,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
-
-import { verifyToken } from './utils/api'
-import { useUserStore } from './stores/user'
-
 import TheHeader from './components/TheHeader.vue'
-
-const userStore = useUserStore()
-
-onMounted(async () => {
-  try {
-    userStore.login = await verifyToken()
-  } catch(e) {
-    userStore.login = null
-  }
-})
 </script>
 
 <style>

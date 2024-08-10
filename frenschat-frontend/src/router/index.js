@@ -5,6 +5,9 @@ import RegisterView from '../views/RegisterView.vue'
 import JoinView from '../views/JoinView.vue'
 import RoomView from '../views/RoomView.vue'
 
+import { useUserStore } from '../stores/user'
+import { verifyToken } from '../utils/api'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -38,6 +41,25 @@ const router = createRouter({
       redirect: '/'
     },
   ]
+})
+
+router.beforeEach(async ({ name }) => {
+
+  const isProtectedRoute = ['room', 'join']
+    .find(routeName => routeName === name)
+
+  if (isProtectedRoute) {
+    const userStore = useUserStore()
+
+    try {
+      userStore.login = await verifyToken()
+    } catch(e) {
+      userStore.login = null
+      return '/login'
+    }
+  }
+
+  return true
 })
 
 export default router
