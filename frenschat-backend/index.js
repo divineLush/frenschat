@@ -22,7 +22,11 @@ fastify.register(fastifyJwt, {
   },
 })
 
-await fastify.register(websocket)
+fastify.register(websocket, {
+  options: {
+    maxPayload: 1048576,
+  }
+})
 
 fastify.register(fastifyCookie)
 
