@@ -30,14 +30,6 @@ fastify.register(fastifyCookie, {
 fastify.register(userRoutes, { prefix: 'api/user' })
 fastify.register(roomRoutes, { prefix: 'api/room' })
 
-// fastify.addHook('onRequest', async (request, reply) => {
-//   try {
-//     await request.jwtVerify()
-//   } catch (err) {
-//     reply.send(err)
-//   }
-// })
-
 try {
   await fastify.listen({ port: process.env.PORT })
   await db()

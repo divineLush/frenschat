@@ -21,7 +21,7 @@ export default (fastify, _, done) => {
         // sameSite: true
       })
       .code(code)
-      .send({})
+      .send({ login })
   })
 
   fastify.post('/register', async (request, reply) => {
