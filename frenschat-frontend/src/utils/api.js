@@ -30,3 +30,17 @@ export const signUp = async (username, email, password) => {
 
   return await response.json()
 }
+
+export const verifyToken = async () => {
+  const url = `${BASE_URL}/verify`
+
+  const response = await fetch(url, {
+    credentials: 'include',
+  })
+
+  if (!response.ok) {
+    throw new Error('invalid token')
+  }
+
+  return (await response.json()).login
+}

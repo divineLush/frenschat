@@ -5,8 +5,10 @@ import fastifyCookie from '@fastify/cookie'
 import websocket from '@fastify/websocket'
 
 import db from './lib/db/db.js'
+
 import userRoutes from './router/user.js'
 import roomRoutes from './router/room.js'
+import verifyRoutes from './router/verify.js'
 
 const fastify = Fastify({
   logger: true
@@ -29,6 +31,7 @@ fastify.register(fastifyCookie, {
 
 fastify.register(userRoutes, { prefix: 'api/user' })
 fastify.register(roomRoutes, { prefix: 'api/room' })
+fastify.register(verifyRoutes, { prefix: 'api/verify' })
 
 try {
   await fastify.listen({ port: process.env.PORT })
