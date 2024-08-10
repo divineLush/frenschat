@@ -1,6 +1,6 @@
 export default class Socket {
-  constructor(onMessage) {
-    this._socket = new WebSocket('ws://localhost:3000/api/room')
+  constructor(roomId, onMessage) {
+    this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
 
     this._socket.addEventListener('open', () => {
       this._socket.addEventListener('message', onMessage)

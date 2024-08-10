@@ -2,7 +2,7 @@ export default (fastify, _, done) => {
 
   fastify.addHook('onRequest', request => request.jwtVerify())
 
-  fastify.get('/', { websocket: true }, async (socket, request) => {
+  fastify.get('/*', { websocket: true }, async (socket, request) => {
 
     socket.on('message', message => {
       fastify.websocketServer.clients.forEach((client) => {

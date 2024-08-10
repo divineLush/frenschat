@@ -28,18 +28,23 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
 import Socket from '../utils/socket.js'
 
 import SubmitArrow from '../components/icons/SubmitArrow.vue'
 import Error from '../components/Error.vue'
 
+const route = useRoute()
+
 const messages = ref([])
 const newMessage = ref('')
 const error = ref('')
-const socket = ref(new Socket(e => {
-  messages.value.push(e.data)
-}))
+
+const socket = ref(new Socket(
+  route.params.id,
+  e => { messages.value.push(e.data) },
+))
 
 const onSubmit = () => {
   if (!newMessage.value) {

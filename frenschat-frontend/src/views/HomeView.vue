@@ -7,17 +7,21 @@
       PONDER THY ORB
     </h2>
 
-    <nav class="mt-4 text-center">
+    <nav v-if="userStore.login" class="mt-4 text-center">
       <router-link to="/join">JOIN ROOM</router-link>
-      <router-link v-if="userStore.login" class="ml-1" to="/create">CREATE ROOM</router-link>
+      <router-link class="ml-1" :to="`/room/${roomId}`">CREATE ROOM</router-link>
     </nav>
   </main>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
+
 import { useUserStore } from '../stores/user'
 
 const userStore = useUserStore()
+const roomId = ref(uuidv4())
 </script>
 
 <style>

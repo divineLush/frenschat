@@ -23,7 +23,7 @@ const router = createRouter({
       component: RegisterView
     },
     {
-      path: '/room',
+      path: '/room/:id',
       name: 'room',
       component: RoomView
     },
