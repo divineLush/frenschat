@@ -1,0 +1,5 @@
+export default {
+  CONNECTED: 'CONNECTED',
+  MESSAGE: 'MESSAGE',
+  DISCONNECTED: 'DISCONNECTED',
+}

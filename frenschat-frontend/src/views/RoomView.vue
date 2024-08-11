@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Socket from '../utils/socket.js'
@@ -35,6 +35,9 @@ import Socket from '../utils/socket.js'
 import SubmitArrow from '../components/icons/SubmitArrow.vue'
 import Error from '../components/Error.vue'
 
+import { useUserStore } from '../stores/user'
+
+const userStore = useUserStore()
 const route = useRoute()
 
 const messages = ref([])
@@ -43,8 +46,13 @@ const error = ref('')
 
 const socket = ref(new Socket(
   route.params.id,
-  e => { messages.value.push(e.data) },
+  userStore.login,
+  e => { messages.value.push(JSON.parse(e.data)) },
 ))
+
+onUnmounted(() => {
+  socket.value.close()
+})
 
 const onSubmit = () => {
   if (!newMessage.value) {
@@ -52,7 +60,8 @@ const onSubmit = () => {
   }
 
   try {
-    socket.value.send(newMessage.value)
+    socket.value.sendMessage(newMessage.value)
+    newMessage.value = ''
   } catch(e) {
     error.value = e.message
   }

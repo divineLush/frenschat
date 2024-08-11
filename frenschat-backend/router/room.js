@@ -7,7 +7,7 @@ export default (fastify, _, done) => {
     socket.on('message', message => {
       fastify.websocketServer.clients.forEach((client) => {
         if (client.readyState === 1) {
-          client.send(message.toString().trim())
+          client.send(message.toString())
         }
       })
     })
