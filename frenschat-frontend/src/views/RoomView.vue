@@ -1,12 +1,7 @@
 <template>
   <div class="room">
     <div class="messages-wrapper">
-      <span
-        class="message"
-        v-for="msg in messages"
-      >
-        {{ msg }}
-      </span>
+      <Message v-for="msg in messages" :msg="msg" />
     </div>
 
     <form class="message-form" @submit.prevent.stop="onSubmit">
@@ -33,6 +28,7 @@ import { useRoute } from 'vue-router'
 import Socket from '../utils/socket.js'
 
 import SubmitArrow from '../components/icons/SubmitArrow.vue'
+import Message from '../components/Message.vue'
 import Error from '../components/Error.vue'
 
 import { useUserStore } from '../stores/user'
@@ -83,15 +79,6 @@ const onSubmit = () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.message {
-  /* background: var(--crust); */
-  background: radial-gradient(ellipse at top, var(--crust), var(--mantle));
-  max-width: 40%;
-  width: fit-content;
-  padding: 4px 8px;
-  border-radius: 16px;
 }
 
 .message-form {
