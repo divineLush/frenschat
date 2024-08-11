@@ -28,7 +28,7 @@ export default class Socket {
   }
 
   close() {
-    this._send(messageTypes.DISCONNECTED, 'user disconnected')
+    this._send(messageTypes.DISCONNECTED, `${this._username} disconnected`)
     this._socket.close()
   }
 }

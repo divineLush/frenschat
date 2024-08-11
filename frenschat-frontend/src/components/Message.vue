@@ -3,9 +3,12 @@
     class="message"
     :class="{
       '_info': !isTypeMessage,
-      '_you': isTypeMessage && msg.login !== userStore.username,
+      '_you': isTypeMessage && isMine,
     }"
   >
+    <span class="author" v-if="isTypeMessage && !isMine">
+      {{ msg.username }}
+    </span>
     {{ msg.message }}
   </span>
 </template>
@@ -21,11 +24,11 @@ const userStore = useUserStore()
 const props = defineProps(['msg'])
 
 const isTypeMessage = computed(() => props.msg.type === messageTypes.MESSAGE)
+const isMine = computed(() => props.msg.username === userStore.username)
 </script>
 
 <style>
 .message {
-  /* background: var(--crust); */
   background: radial-gradient(ellipse at top, var(--surface0), var(--crust));
   max-width: 40%;
   width: fit-content;
@@ -43,5 +46,11 @@ const isTypeMessage = computed(() => props.msg.type === messageTypes.MESSAGE)
   margin-left: auto;
   color: var(--base);
   background: radial-gradient(ellipse at top, var(--lavender), var(--pink));
+}
+
+.author {
+  display: block;
+  font-size: 14px;
+  color: var(--subtext0);
 }
 </style>

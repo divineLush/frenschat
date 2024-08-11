@@ -75,6 +75,7 @@ const onSubmit = () => {
 }
 
 .messages-wrapper {
+  padding: 0 8px;
   overflow: auto;
   display: flex;
   flex-direction: column;
