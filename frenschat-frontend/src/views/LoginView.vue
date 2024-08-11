@@ -42,10 +42,13 @@ const router = useRouter()
 
 const onSubmit = async () => {
   try {
-    userStore.login = (await signIn(login.value, password.value)).login
+    const { email, username } = await signIn(login.value, password.value)
+    userStore.email = email
+    userStore.username = username
     router.push('/')
   } catch(err) {
-    userStore.login = null
+    userStore.email = null
+    userStore.username = null
     error.value = err.message
   }
 }

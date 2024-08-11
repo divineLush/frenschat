@@ -7,7 +7,7 @@
       PONDER THY ORB
     </h2>
 
-    <nav v-if="userStore.login" class="mt-4 text-center">
+    <nav v-if="userStore.loggedIn" class="mt-4 text-center">
       <router-link to="/join">JOIN ROOM</router-link>
       <router-link class="ml-1" :to="`/room/${roomId}`">CREATE ROOM</router-link>
     </nav>

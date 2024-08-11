@@ -42,7 +42,7 @@ const error = ref('')
 
 const socket = ref(new Socket(
   route.params.id,
-  userStore.login,
+  userStore.username,
   e => { messages.value.push(JSON.parse(e.data)) },
 ))
 

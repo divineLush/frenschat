@@ -16,9 +16,12 @@ onMounted(async () => {
   const userStore = useUserStore()
 
   try {
-    userStore.login = await verifyToken()
+    const { email, username } = await verifyToken()
+    userStore.email = email
+    userStore.username = username
   } catch(e) {
-    userStore.login = null
+    userStore.email = null
+    userStore.username = null
   }
 })
 </script>

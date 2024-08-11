@@ -42,5 +42,5 @@ export const verifyToken = async () => {
     throw new Error('invalid token')
   }
 
-  return (await response.json()).login
+  return await response.json()
 }

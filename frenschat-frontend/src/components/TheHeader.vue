@@ -2,8 +2,9 @@
   <header class="app-header">
     <router-link to="/" class="app-logo">FRENSCHAT</router-link>
     <nav>
-      <template v-if="userStore.login">
-        <span>{{ userStore.login }}</span>
+      <template v-if="userStore.loggedIn">
+        <span>{{ userStore.username }}, </span>
+        <span>{{ userStore.email }}</span>
       </template>
       <template v-else>
         <router-link to="/login">login</router-link>
