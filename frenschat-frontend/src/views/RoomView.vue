@@ -47,10 +47,12 @@ const socket = ref(new Socket(
   userStore.username,
   e => {
     messages.value.push(JSON.parse(e.data))
-    messagesWrapper.value.scroll({
-      top: messagesWrapper.value.scrollHeight,
-      behavior: 'smooth'
-    })
+    setTimeout(() => {
+      messagesWrapper.value.scroll({
+        top: messagesWrapper.value.scrollHeight,
+        behavior: 'smooth'
+      })
+    }, 0)
   },
 ))
 
