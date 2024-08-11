@@ -1,6 +1,6 @@
 <template>
   <div class="room">
-    <div class="messages-wrapper">
+    <div class="messages-wrapper" ref="messagesWrapper">
       <Message v-for="msg in messages" :msg="msg" />
     </div>
 
@@ -40,10 +40,18 @@ const messages = ref([])
 const newMessage = ref('')
 const error = ref('')
 
+const messagesWrapper = ref(null)
+
 const socket = ref(new Socket(
   route.params.id,
   userStore.username,
-  e => { messages.value.push(JSON.parse(e.data)) },
+  e => {
+    messages.value.push(JSON.parse(e.data))
+    messagesWrapper.value.scroll({
+      top: messagesWrapper.value.scrollHeight,
+      behavior: 'smooth'
+    })
+  },
 ))
 
 onUnmounted(() => {
