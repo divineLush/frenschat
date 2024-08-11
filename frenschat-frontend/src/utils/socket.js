@@ -1,12 +1,12 @@
 import messageTypes from "./messageTypes"
 
 export default class Socket {
-  constructor(roomId, login, onMessage) {
-    this._login = login
+  constructor(roomId, username, onMessage) {
+    this._username = username
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
 
     this._socket.addEventListener('open', () => {
-      this._send(messageTypes.CONNECTED, `${login} connected`)
+      this._send(messageTypes.CONNECTED, `${username} connected`)
       this._socket.addEventListener('message', onMessage)
     })
   }
@@ -17,7 +17,7 @@ export default class Socket {
     }
 
     this._socket.send(JSON.stringify({
-      login: this._login,
+      username: this._username,
       type,
       message
     }))
