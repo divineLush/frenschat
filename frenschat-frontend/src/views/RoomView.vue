@@ -46,7 +46,13 @@ const socket = ref(new Socket(
   route.params.id,
   userStore.username,
   e => {
-    messages.value.push(JSON.parse(e.data))
+    const msg = JSON.parse(e.data)
+    messages.value.push(msg)
+
+    if (msg.username !== userStore.username) {
+      return
+    }
+
     setTimeout(() => {
       messagesWrapper.value.scroll({
         top: messagesWrapper.value.scrollHeight,
