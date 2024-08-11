@@ -4,21 +4,23 @@ import { createUser } from '../lib/db/collections/users.js'
 export default (fastify, _, done) => {
   fastify.post('/login', async (request, reply) => {
     const { login, password } = JSON.parse(request.body)
-    const isValid = await checkPassword(login, password)
-    const code = isValid ? 200 : 400
 
-    const token = fastify.jwt.sign({ login })
+    if (await checkPassword(login, password)) {
+      const token = fastify.jwt.sign({ login })
 
-    reply
-      .cookie(process.env.COOKIE_NAME, token, {
-        domain: 'localhost',
-        path: '/',
-        secure: true,
-        httpOnly: true,
-        sameSite: true
-      })
-      .code(code)
-      .send({ login })
+      reply
+        .cookie(process.env.COOKIE_NAME, token, {
+          domain: 'localhost',
+          path: '/',
+          secure: true,
+          httpOnly: true,
+          sameSite: true
+        })
+        .code(200)
+        .send({ login })
+    } else {
+      reply.code(400).send({ login })
+    }
   })
 
   fastify.post('/register', async (request, reply) => {
