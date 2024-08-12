@@ -13,7 +13,8 @@
         autocomplete="off"
         id="new-message"
         name="new-message"
-        type="textarea"
+        type="text"
+        autofocus
       ></input>
       <button class="message-form__submit" type="submit">
         <SubmitArrow />
