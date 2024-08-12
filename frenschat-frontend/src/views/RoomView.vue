@@ -1,6 +1,7 @@
 <template>
   <div class="room">
-    <div class="messages-wrapper" ref="messagesWrapper">
+    <p class="text-center">ROOM ID: {{ route.params.id }}</p>
+    <div class="messages-wrapper mt-2" ref="messagesWrapper">
       <Message v-for="msg in messages" :msg="msg" />
     </div>
 
