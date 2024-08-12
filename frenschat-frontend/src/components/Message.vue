@@ -54,4 +54,10 @@ const isMine = computed(() => props.msg.username === userStore.username)
   font-size: 14px;
   color: var(--subtext0);
 }
+
+@media (max-width: 768px) {
+  .author {
+    font-size: 12px;
+  }
+}
 </style>
