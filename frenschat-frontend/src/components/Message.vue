@@ -39,6 +39,7 @@ const isMine = computed(() => props.msg.username === userStore.username)
 .message._info {
   margin: auto;
   background: transparent;
+  max-width: none;
   color: var(--pink);
 }
 

@@ -26,6 +26,10 @@ export default class Socket {
   }
 
   _send(type, message) {
+    if (!this._socket) {
+      return
+    }
+
     if (this._socket.readyState !== WebSocket.OPEN) {
       router.push({ path: '/' })
 
@@ -44,6 +48,10 @@ export default class Socket {
   }
 
   close() {
+    if (!this._socket) {
+      return
+    }
+
     this._send(messageTypes.DISCONNECTED, `${this._username || 'anon'} disconnected`)
     this._socket.close()
   }
