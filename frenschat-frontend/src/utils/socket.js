@@ -11,7 +11,7 @@ export default class Socket {
     })
 
     this._socket.addEventListener('open', () => {
-      this._send(messageTypes.CONNECTED, `${username} connected`)
+      this._send(messageTypes.CONNECTED, `${username || 'anon'} connected`)
       this._socket.addEventListener('message', onMessage)
     })
   }
@@ -33,7 +33,7 @@ export default class Socket {
   }
 
   close() {
-    this._send(messageTypes.DISCONNECTED, `${this._username} disconnected`)
+    this._send(messageTypes.DISCONNECTED, `${this._username || 'anon'} disconnected`)
     this._socket.close()
   }
 }
