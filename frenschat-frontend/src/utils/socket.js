@@ -9,6 +9,7 @@ export default class Socket {
     }
 
     this._username = username
+    this._roomId = roomId
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
 
     this._socket.addEventListener('open', () => {
@@ -37,6 +38,7 @@ export default class Socket {
     }
 
     this._socket.send(JSON.stringify({
+      roomId: this._roomId,
       username: this._username,
       type,
       message
