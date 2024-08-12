@@ -3,6 +3,11 @@ import messageTypes from "./messageTypes"
 
 export default class Socket {
   constructor(roomId, username, onMessage) {
+    if (!roomId || !username) {
+      router.push({ path: '/' })
+      throw new Error('invalid username or room ID')
+    }
+
     this._username = username
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
 
