@@ -8,6 +8,7 @@
       <input
         class="message-form__input"
         v-model.trim="newMessage"
+        autocomplete="off"
         id="new-message"
         name="new-message"
         type="text"
