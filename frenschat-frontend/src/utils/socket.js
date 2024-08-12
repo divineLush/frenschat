@@ -1,9 +1,14 @@
+import router from '@/router'
 import messageTypes from "./messageTypes"
 
 export default class Socket {
   constructor(roomId, username, onMessage) {
     this._username = username
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
+
+    this._socket.addEventListener('error', () => {
+      router.push({ path: '/' })
+    })
 
     this._socket.addEventListener('open', () => {
       this._send(messageTypes.CONNECTED, `${username} connected`)
