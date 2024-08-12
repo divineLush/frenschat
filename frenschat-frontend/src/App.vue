@@ -33,6 +33,7 @@ onMounted(async () => {
 }
 
 .app-logo {
+  padding-left: 0;
   font-weight: bold;
   background: radial-gradient(var(--pink), var(--green));
   background-clip: text;
