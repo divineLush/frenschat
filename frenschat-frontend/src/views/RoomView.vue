@@ -1,6 +1,7 @@
 <template>
   <div class="room">
     <p class="text-center">ROOM ID: {{ route.params.id }}</p>
+    <p class="text-center">YOU ONLY HAVE 24 HOURS</p>
     <div class="messages-wrapper mt-2" ref="messagesWrapper">
       <Message v-for="msg in messages" :msg="msg" />
     </div>

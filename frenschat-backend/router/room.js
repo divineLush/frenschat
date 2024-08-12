@@ -23,12 +23,20 @@ export default (fastify, _, done) => {
         pubId: roomId,
         sockets: [ socket ],
       })
-    }
 
-    socket.on('close', (data) => {
-      console.log('CLOSE', data)
-      // TODO: rm user from rooms collection
-    })
+      setTimeout(() => {
+        rooms
+          .filter(({ pubId }) => pubId === roomId)
+          .forEach(room => {
+            room.sockets.forEach(s => {
+              s.close()
+            })
+          })
+
+        rooms = rooms.filter(({ pubId }) => pubId === roomId)
+      }, 1000 * 60 * 60 * 24)
+      // }, 1000 * 10)
+    }
 
     socket.on('message', message => {
       rooms

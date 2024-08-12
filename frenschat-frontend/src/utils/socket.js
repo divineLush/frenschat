@@ -11,13 +11,17 @@ export default class Socket {
     this._username = username
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
 
-    this._socket.addEventListener('error', () => {
-      router.push({ path: '/' })
-    })
-
     this._socket.addEventListener('open', () => {
       this._send(messageTypes.CONNECTED, `${username || 'anon'} connected`)
       this._socket.addEventListener('message', onMessage)
+    })
+
+    this._socket.addEventListener('close', () => {
+      router.push({ path: '/' })
+    })
+
+    this._socket.addEventListener('error', () => {
+      router.push({ path: '/' })
     })
   }
 
