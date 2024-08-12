@@ -57,6 +57,6 @@ const onSubmit = async () => {
 }
 
 .join-room-btn {
-  background: radial-gradient(var(--lavender), transparent);
+  background: radial-gradient(ellipse at top, var(--lavender), transparent);
 }
 </style>

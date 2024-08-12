@@ -13,7 +13,7 @@
         autocomplete="off"
         id="new-message"
         name="new-message"
-        type="text"
+        type="textarea"
       ></input>
       <button class="message-form__submit" type="submit">
         <SubmitArrow />
@@ -106,13 +106,13 @@ const onSubmit = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
 }
 
 .message-form__input {
   width: 100%;
   background: transparent;
-  border-color: var(--overlay2);
+  color: var(--text);
+  border-color: var(--text);
 }
 
 .message-form__submit {

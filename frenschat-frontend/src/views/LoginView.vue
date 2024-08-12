@@ -64,6 +64,6 @@ const onSubmit = async () => {
 }
 
 .sign-in-btn {
-  background: radial-gradient(var(--green), transparent);
+  background: radial-gradient(ellipse at top, var(--green), transparent);
 }
 </style>

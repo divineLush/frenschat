@@ -43,7 +43,7 @@
 body {
   min-height: 100vh;
   color: var(--text);
-  background: var(--base);
+  background: radial-gradient(ellipse at bottom, var(--base), transparent);
   transition:
     color 0.5s,
     background-color 0.5s;
