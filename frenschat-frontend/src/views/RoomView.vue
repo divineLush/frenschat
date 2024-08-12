@@ -1,6 +1,6 @@
 <template>
   <div class="room">
-    <p class="text-center">ROOM ID: {{ route.params.id }}</p>
+    <p class="text-center pointer" @click="copyToClipboard">ROOM ID: {{ route.params.id }}</p>
     <p class="text-center">DON'T RELOAD THE PAGE, YOU ONLY HAVE 24 HOURS</p>
     <div class="messages-wrapper mt-2" ref="messagesWrapper">
       <Message v-for="msg in messages" :msg="msg" />
@@ -65,6 +65,10 @@ const socket = ref(new Socket(
   },
 ))
 
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(route.params.id)
+}
+
 onUnmounted(() => {
   socket.value.close()
 })
@@ -102,6 +106,7 @@ const onSubmit = () => {
 }
 
 .message-form {
+  padding: 0 8px;
   margin-top: auto;
   display: flex;
   align-items: center;

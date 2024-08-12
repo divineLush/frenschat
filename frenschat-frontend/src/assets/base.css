@@ -83,6 +83,10 @@ body {
   text-align: center;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 input {
   padding: 4px;
   border: 2px solid var(--overlay2);

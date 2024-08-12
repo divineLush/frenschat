@@ -29,7 +29,7 @@ const isMine = computed(() => props.msg.username === userStore.username)
 
 <style>
 .message {
-  background: radial-gradient(ellipse at top, var(--surface0), var(--crust));
+  background: radial-gradient(ellipse at bottom, var(--crust), transparent);
   max-width: 40%;
   width: fit-content;
   padding: 4px 8px;
@@ -52,7 +52,9 @@ const isMine = computed(() => props.msg.username === userStore.username)
 .author {
   display: block;
   font-size: 14px;
-  color: var(--subtext0);
+  background: radial-gradient(var(--pink), var(--blue));
+  background-clip: text;
+  color: transparent;
 }
 
 @media (max-width: 768px) {
