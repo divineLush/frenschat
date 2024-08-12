@@ -5,7 +5,7 @@ export default class Socket {
   constructor(roomId, username, onMessage) {
     if (!roomId || !username) {
       router.push({ path: '/' })
-      throw new Error('invalid username or room ID')
+      return
     }
 
     this._username = username
@@ -27,7 +27,9 @@ export default class Socket {
 
   _send(type, message) {
     if (this._socket.readyState !== WebSocket.OPEN) {
-      throw new Error('Messed up connection')
+      router.push({ path: '/' })
+
+      return
     }
 
     this._socket.send(JSON.stringify({
