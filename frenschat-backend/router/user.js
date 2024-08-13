@@ -47,5 +47,11 @@ export default (fastify, _, done) => {
     }
   })
 
+  fastify.post('/logout', (request, reply) => {
+    reply
+      .clearCookie(process.env.COOKIE_NAME, { path: '/' })
+      .send('signed out')
+  })
+
   done()
 }

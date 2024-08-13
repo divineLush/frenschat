@@ -44,3 +44,16 @@ export const verifyToken = async () => {
 
   return await response.json()
 }
+
+export const signOut = async () => {
+  const url = `${BASE_URL}/user/logout`
+
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'include',
+  })
+
+  if (!response.ok) {
+    throw new Error('server messed up')
+  }
+}

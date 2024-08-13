@@ -67,24 +67,15 @@ body {
   font-size: 16px;
 }
 
-.ml-1 {
-  margin-left: 8px;
+a {
+  text-decoration: none;
+  color: var(--sky);
+  transition: color 0.4s ease;
+  padding: 3px;
 }
 
-.mt-2 {
-  margin-top: 16px;
-}
-
-.mt-4 {
-  margin-top: 32px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.pointer {
-  cursor: pointer;
+a:hover {
+  color: var(--pink);
 }
 
 input {
@@ -104,11 +95,6 @@ button[type="submit"] {
   border: 0;
   border-radius: 32px;
   font-size: inherit;
-}
-
-.error {
-  text-align: center;
-  color: var(--red);
 }
 
 @media (max-width: 768px) {

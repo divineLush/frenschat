@@ -12,9 +12,9 @@ import { verifyToken } from './utils/api'
 
 import TheHeader from './components/TheHeader.vue'
 
-onMounted(async () => {
-  const userStore = useUserStore()
+const userStore = useUserStore()
 
+onMounted(async () => {
   try {
     const { email, username } = await verifyToken()
     userStore.email = email
@@ -25,18 +25,3 @@ onMounted(async () => {
   }
 })
 </script>
-
-<style>
-.app-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.app-logo {
-  padding-left: 0;
-  font-weight: bold;
-  background: radial-gradient(var(--pink), var(--lavender));
-  background-clip: text;
-  color: transparent;
-}
-</style>

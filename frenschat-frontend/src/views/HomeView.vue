@@ -26,6 +26,10 @@ const roomId = ref(uuidv4())
 
 <style>
 .motto {
-  color: var(--green);
+  /* color: var(--green); */
+  font-weight: bold;
+  background: radial-gradient(ellipse at bottom, var(--pink), var(--sky));
+  background-clip: text;
+  color: transparent;
 }
 </style>
