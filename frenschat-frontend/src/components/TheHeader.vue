@@ -10,7 +10,7 @@
 
       <div class="mt-1">
         <button class="account-btn" @click="handleSignOut">sign out</button>
-        <button class="account-btn ml-2" @click="suicide">suicide</button>
+        <button class="account-btn ml-2" @click="handleSuicide">suicide</button>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
 import { useRouter } from 'vue-router'
 
 import { useUserStore } from '../stores/user'
-import { signOut } from '../utils/api'
+import { signOut, suicide } from '../utils/api'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -41,8 +41,15 @@ const handleSignOut = async () => {
   }
 }
 
-const suicide = () => {
-  router.push({ path: '/' })
+const handleSuicide = async () => {
+  try {
+    await suicide()
+    userStore.email = null
+    userStore.username = null
+    router.push({ path: '/' })
+  } catch(e) {
+    console.error(e)
+  }
 }
 </script>
 

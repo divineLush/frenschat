@@ -57,3 +57,18 @@ export const signOut = async () => {
     throw new Error('server messed up')
   }
 }
+
+export const suicide = async () => {
+  const url = `${BASE_URL}/user/delete`
+
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'include',
+  })
+
+  if (!response.ok) {
+    throw new Error('server messed up')
+  }
+
+  return await response.json()
+}

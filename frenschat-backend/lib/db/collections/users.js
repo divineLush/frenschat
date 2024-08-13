@@ -22,3 +22,17 @@ export const findUser = async (login) => {
 
   return user
 }
+
+export const deleteUser = async (login) => {
+  const UserModel = await createUserModel()
+
+  const user = await UserModel.deleteOne({ $or: [
+    { username: login },
+    { email: login },
+  ] })
+  if (!user) {
+    throw new Error('user not found')
+  }
+
+  return user
+}

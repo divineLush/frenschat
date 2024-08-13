@@ -1,5 +1,5 @@
 import { compare } from 'bcrypt'
-import { createUser, findUser } from '../lib/db/collections/users.js'
+import { createUser, deleteUser, findUser } from '../lib/db/collections/users.js'
 
 export default (fastify, _, done) => {
   fastify.post('/login', async (request, reply) => {
@@ -51,6 +51,16 @@ export default (fastify, _, done) => {
     reply
       .clearCookie(process.env.COOKIE_NAME, { path: '/' })
       .send('signed out')
+  })
+
+  fastify.post('/delete', async (request, reply) => {
+    try {
+      const { login } = await request.jwtVerify()
+      const { email, username } = await deleteUser(login)
+      reply.code(200).send({ email, username })
+    } catch(e) {
+      reply.code(400).send(e)
+    }
   })
 
   done()
