@@ -1,17 +1,5 @@
 <template>
   <form class="join-form" autocomplete="on" @submit.prevent.stop="onSubmit">
-    <template v-if="!userStore.loggedIn">
-      <label for="username">Username</label>
-      <input
-        v-model.trim="username"
-        id="username"
-        name="username"
-        type="text"
-        autocomplete="off"
-        required
-      ></input>
-    </template>
-
     <label for="room-id">Room ID</label>
     <input
       v-model.trim="roomId"
@@ -33,16 +21,11 @@ import { useUserStore } from '../stores/user'
 
 const userStore = useUserStore()
 
-const username = ref('')
 const roomId = ref('')
 
 const router = useRouter()
 
 const onSubmit = async () => {
-  if (!userStore.loggedIn) {
-    userStore.username = username.value
-  }
-
   router.push({ path: `/room/${roomId.value}` })
 }
 </script>

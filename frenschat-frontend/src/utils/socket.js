@@ -3,11 +3,6 @@ import messageTypes from "./messageTypes"
 
 export default class Socket {
   constructor(roomId, username, onMessage) {
-    if (!roomId || !username) {
-      router.push({ path: '/' })
-      return
-    }
-
     this._username = username
     this._roomId = roomId
     this._socket = new WebSocket(`ws://localhost:3000/api/room/${roomId}`)
@@ -27,10 +22,6 @@ export default class Socket {
   }
 
   _send(type, message) {
-    if (!this._socket) {
-      return
-    }
-
     if (this._socket.readyState !== WebSocket.OPEN) {
       router.push({ path: '/' })
 
@@ -50,10 +41,6 @@ export default class Socket {
   }
 
   close() {
-    if (!this._socket) {
-      return
-    }
-
     this._send(messageTypes.DISCONNECTED, `${this._username || 'anon'} disconnected`)
     this._socket.close()
   }
