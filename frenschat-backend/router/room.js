@@ -1,8 +1,6 @@
-import stream from 'stream'
+import EventEmitter from 'events'
 
-const messageHub = new stream.Readable({
-  read() {}
-})
+const hubs = new Map()
 
 export default (fastify, _, done) => {
 
@@ -11,14 +9,31 @@ export default (fastify, _, done) => {
   fastify.get('/*', { websocket: true }, async (socket, request) => {
     const roomId = request.params['*']
 
+    let messageHub = hubs.get(roomId)
+
+    if (!messageHub) {
+      messageHub = new EventEmitter()
+      hubs.set(roomId, messageHub)
+    }
+
+    if (messageHub.listenerCount('data') > 6) {
+      reply.code(401).send('too many people')
+    }
+
+    const emitterCb = chunk => {
+      socket.send(JSON.stringify(JSON.parse(Buffer.from(chunk))))
+    }
+
+    messageHub.on('data', emitterCb)
+
     socket.on('message', message => {
-      messageHub.push(message)
+      messageHub.emit('data', message)
     })
 
-    messageHub.on('data', chunk => {
-      const message = JSON.parse(Buffer.from(chunk))
-      if (message.roomId === roomId) {
-        socket.send(JSON.stringify(message))
+    socket.on('close', () => {
+      messageHub.removeListener('data', emitterCb)
+      if (!messageHub.listenerCount('data')) {
+        hubs.delete(roomId)
       }
     })
 
