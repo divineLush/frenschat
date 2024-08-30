@@ -31,8 +31,8 @@ fastify.register(websocket, {
 fastify.register(fastifyCookie)
 
 fastify.addHook('onRequest', (request, reply, done) => {
-  reply.header('access-control-allow-origin', '*')
-  reply.header('access-control-allow-methods', '*')
+  reply.header('access-control-allow-origin', 'http://localhost:5173')
+  reply.header('access-control-allow-methods', 'GET, POST')
   reply.header('access-control-allow-credentials', true)
 
   done()
